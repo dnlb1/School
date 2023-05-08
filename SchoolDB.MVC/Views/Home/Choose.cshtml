@@ -1,0 +1,70 @@
+﻿@model SchoolDB.Model.Models.Student
+<link href="~/css/choose.css" rel="stylesheet"/>
+@{
+    ViewData["Title"] = "Choose";
+}
+
+
+<h4>Kiválasztott tanuló</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Choose">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input disabled asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input disabled asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input disabled asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfBirth" class="control-label"></label>
+                <input disabled asp-for="DateOfBirth" class="form-control" />
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClassId" class="control-label"></label>
+                <input disabled asp-for="ClassId" class="form-control" />
+                <span asp-validation-for="ClassId" class="text-danger"></span>
+            </div>
+            <div>
+                <label>Melyik hónapra végezzem a szűrést?</label>
+                <select name="month">
+                    <option value="1">Január</option>
+                    <option value="2">Február</option>
+                    <option value="3">Március</option>
+                    <option value="4">Április</option>
+                    <option value="5" selected>Május</option>
+                    <option value="6">Június</option>
+                    <option value="7">Július</option>
+                    <option value="8">Augusztus</option>
+                    <option value="9">Szeptember</option>
+                    <option value="10">Október</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Lekérdez" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="StudentAvgMonth">Vissza a tanulókhoz</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<SchoolDB.Model.Models.Student>
+<link href="~/css/classmember.css" rel="stylesheet" />
+<div id="Container">
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Név</th>
+                <th>Osztály</th>
+                <th>Születési dátum</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                    <tr>
+                    <td>@item.Id</td>
+                    <td>@item.LastName @item.FirstName</td>
+                    <td>@item.Class.Class1</td>
+                    <td>@DateTime.Parse(item.DateOfBirth.ToString()).ToString("yyyy/MM/dd")</td>
+                    <td>@Html.ActionLink("Kiválaszt","Choose", new {id = item.Id})</td>
+                    </tr>
+                }
+            }
+        </tbody>
+       
+    </table>
+</div>

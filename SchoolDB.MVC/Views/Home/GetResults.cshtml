@@ -1,0 +1,29 @@
+﻿@model IEnumerable<SchoolDB.Model.Models.AvgGradeSubject>
+<link href="~/css/classmember.css" rel="stylesheet" />
+
+<div id="Container">
+    <table>
+        <thead>
+            <tr>
+                <td>
+                    Tantárgyankénti Átlagok
+                </td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                    <tr>
+                    <td>@item.SubjectID</td>
+                    <td>@item.Avg</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <form asp-action="StudentAvgMonth" method="get">
+        <input type="submit" class="btn btn-danger"  value="Vissza a tanulókhoz" />
+    </form>
+</div>

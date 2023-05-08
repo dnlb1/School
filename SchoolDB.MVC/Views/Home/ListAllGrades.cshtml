@@ -1,0 +1,72 @@
+﻿@model IEnumerable<SchoolDB.Model.Models.Grade>
+<link  href="~/css/gradelist.css" rel="stylesheet"/>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="container">
+    <table v-if="!CreateForm">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Tantárgy Id</th>
+                <th>Tantárgy név</th>
+                <th>Tanuló Id</th>
+                <th>Tanuló Neve</th>
+                <th>Értékelés</th>
+                <th>Időpont</th>
+                <th>Témakör</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in @Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Subject.Id</td>
+                        <td>@item.Subject.Name</td>
+                        <td>@item.Stundet.Id</td>
+                        <td>@item.Stundet.LastName @item.Stundet.FirstName</td>
+                        <td>@item.Value</td>
+                        <td>@DateTime.Parse(@item.Time.ToString()).ToString("yyyy/MM/dd")</td>
+                        <td>@item.SubjectArea</td>
+                        <td>
+                        @Html.ActionLink("Módost","EditGrade",new {id=item.Id})
+                        @Html.ActionLink(" Töröl","DeleteGrade",new {id=item.Id})
+                        </td>  
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <div>
+        <div v-if="CreateForm">
+            <form id="createform" asp-action="Create">
+                <h1>Értékelés létrehozása</h1>
+                
+                <label>Tantárgy ID</label>
+                <input type="number" name="SubjectId"/>
+
+                <label>Tanuló ID</label>
+                <input type="number" name="StundetId" />
+
+                <label>Értékelés</label>
+                <input type="number" name="Value" />
+
+                <label>Időpont</label>
+                <input type="date" name="Time"/>
+
+                <label>Témakör</label>
+                <input type="text" name="SubjectArea" />
+
+                <input type="submit" value="Create"/>
+                <button v-on:click="ShowCF" class="btn btn-danger" >Cancel</button>
+            </form>
+        </div>
+        <div id="center">
+            <button id="UniqueBut" v-on:click="ShowCF" v-if="hideb">Hozz létre értékelést</button>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/script.js"></script>

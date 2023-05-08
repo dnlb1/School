@@ -1,0 +1,26 @@
+﻿@model IEnumerable<SchoolDB.Model.Models.Class>
+<link href="~/css/classmember.css" rel="stylesheet" />
+<div id="Container">
+    <table>
+        <thead>
+            <tr>
+                <th>Osztály ID</th>
+                <th>Osztály név</th>
+                <th>Műveletek</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in @Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Class1</td>
+                        <td>@Html.ActionLink("Felsorolás","ClassAllMember", new{id=item.Id})</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+

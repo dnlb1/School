@@ -1,0 +1,31 @@
+﻿@model SchoolDB.Model.Models.Class
+<link href="~/css/classmember.css" rel="stylesheet" />
+<div id="Container">
+    <h1>@Model.Class1 tanulói</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Név</th>
+                <th>Születési idő</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model.Students)
+                {
+                    <tr>
+                    <td>@item.Id</td>
+                    <td>@item.FirstName @item.LastName</td>
+                    
+                    <td>@DateTime.Parse(item.DateOfBirth.ToString()).ToString("yyyy/MM/dd")</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <form asp-action="ClassReadAll" method="get">
+        <input type="submit" class="btn btn-danger" value="Vissza az osztályokhoz" />
+    </form>
+</div>
